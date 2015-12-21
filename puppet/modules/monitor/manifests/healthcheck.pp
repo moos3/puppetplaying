@@ -13,11 +13,22 @@ class monitor::healthcheck{
     group => www-data,
     mode => 0644,
   }
-
-  $ipAddress= '18.90.90.1'
-  $publicIPAddress= '8.8.8.8'
-  $hostname= 'beerdog'
-
+ 
+  if $ec2_local_ipv4{
+  	$ipAddress= $ec2_local_ipv4
+  } else {
+    $ipAddress = $ipaddress_eth0
+  }
+  if $ec2_public_ipv4 {
+  	$publicIPAddress= $ec2_public_ipv4
+  } else {
+	$publicIPAddress= ''	
+  }
+  if $ec2_hostname {
+	$myhostname = $ec2_public_hostname
+  } else {
+  	$myhostname= $hostname
+  }
   file{'/var/www/html/healthcheck.html':
     content => template('monitor/healthcheck.html.erb'),
     owner => www-data,
