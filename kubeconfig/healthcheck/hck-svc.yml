@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: healthcheck
+  name: my-healthcheck
+  namespace: default
+  resourceVersion: "195"
+  selfLink: /api/v1/namespaces/default/services/my-healthcheck
+  uid: e878007e-a82e-11e5-9c51-0a7a02e2fd25
+spec:
+  clusterIP: 10.0.0.235
+  ports:
+  - port: 9999
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: healthcheck
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

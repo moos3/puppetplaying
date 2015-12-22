@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: healthcheck
+  labels: 
+    name: healthcheck
+spec: 
+  containers: 
+    - image: healthcheck-httpd
+      name: healthcheck-httpd
+      ports: 
+        - containerPort: 80
+          name: httpd
+          hostPort: 9999
+      volumeMounts:
+        - name: www-data
+          mountPath: /usr/local/apache2/htdocs/
+  volumes:
+    - 
+     name: www-data
+     hostPath: 
+      path: /var/www/html
+
