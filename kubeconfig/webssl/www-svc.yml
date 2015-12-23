@@ -6,19 +6,20 @@ metadata:
   name: my-www
   namespace: default
 spec:
-  clusterIP: 10.0.0.236
   ports:
   - port: 80
     protocol: TCP
     targetPort: 80
     name: www
+    nodePort: 30080
   - port: 443
     protocol: TCP
     targetPort: 443
     name: ssl
+    nodePort: 30443
   selector:
     app: www
   sessionAffinity: None
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}

@@ -5,18 +5,15 @@ metadata:
     app: healthcheck
   name: my-healthcheck
   namespace: default
-  resourceVersion: "195"
-  selfLink: /api/v1/namespaces/default/services/my-healthcheck
-  uid: e878007e-a82e-11e5-9c51-0a7a02e2fd25
 spec:
-  clusterIP: 10.0.0.235
   ports:
-  - port: 9999
+  - port: 8099
     protocol: TCP
     targetPort: 80
+    nodePort: 30999
   selector:
     app: healthcheck
   sessionAffinity: None
-  type: ClusterIP
+  type: NodePort
 status:
   loadBalancer: {}

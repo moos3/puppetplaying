@@ -1,17 +1,14 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: www
-  labels:
-    name: www
-spec:
-  containers:
+  name: wwwssl
+  labels: 
+    name: wwwssl
+spec: 
+  containers: 
     - image: myhttpdssl
       name: myhttpdssl
-      ports:
-        - containerPort: 80
-          name: httpd
-          hostPort: 80
+      ports: 
         - containerPort: 443
           name: ssl
           hostPort: 443
@@ -19,7 +16,8 @@ spec:
         - name: www-data
           mountPath: /usr/local/apache2/htdocs/
   volumes:
-    -
+    - 
      name: www-data
-     hostPath:
+     hostPath: 
       path: /var/www/html
+
